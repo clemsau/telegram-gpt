@@ -133,3 +133,6 @@ dmypy.json
 
 # Idea
 .idea/
+
+# Config
+config/config.yml

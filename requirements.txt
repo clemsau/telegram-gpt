@@ -9,4 +9,5 @@ platformdirs==3.2.0
 PyYAML==6.0
 ruff==0.0.259
 tomli==2.0.1
+types-PyYAML==6.0.12.9
 typing_extensions==4.5.0
