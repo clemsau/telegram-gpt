@@ -1,14 +1,17 @@
-from telegram import BotCommand, Update
+from telegram import BotCommand
 from telegram.ext import (
     AIORateLimiter,
     Application,
     ApplicationBuilder,
-    CallbackContext,
-    CommandHandler,
+    MessageHandler,
+    filters,
 )
 
+import handlers
 from src.config import openai_api_key, telegram_token
-from src.openai_utils import OpenAIUtils
+from src.openai_utils import Chat
+
+openai_instance: Chat = Chat(openai_api_key)
 
 
 async def post_init(application: Application) -> None:  # type: ignore
@@ -29,18 +32,7 @@ def run_bot() -> None:
         .build()
     )
 
-    openai_instance = OpenAIUtils(openai_api_key)
-
-    async def hello(update: Update, context: CallbackContext) -> None:  # type: ignore
-        answer: str = await openai_instance.complete(
-            [
-                {"role": "system", "content": "You are a joyful assistant."},
-                {"role": "user", "content": "Hello world!"},
-            ]
-        )
-        await update.message.reply_text(answer)  # type: ignore
-
-    application.add_handler(CommandHandler("hello", hello))
+    application.add_handler(MessageHandler(filters.TEXT, handlers.message_handler))  # type: ignore
 
     application.run_polling()
 
