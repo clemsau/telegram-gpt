@@ -3,6 +3,7 @@ from telegram.ext import (
     AIORateLimiter,
     Application,
     ApplicationBuilder,
+    CommandHandler,
     MessageHandler,
     filters,
 )
@@ -17,7 +18,7 @@ openai_instance: Chat = Chat(openai_api_key)
 async def post_init(application: Application) -> None:  # type: ignore
     await application.bot.set_my_commands(
         [
-            BotCommand("/hello", "respond hello"),
+            BotCommand("/reset", "reset the conversation"),
         ]
     )
 
@@ -32,7 +33,8 @@ def run_bot() -> None:
         .build()
     )
 
-    application.add_handler(MessageHandler(filters.TEXT, handlers.message_handler))  # type: ignore
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handlers.message_handler))
+    application.add_handler(CommandHandler("reset", handlers.reset_handler))
 
     application.run_polling()
 
