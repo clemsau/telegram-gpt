@@ -5,6 +5,9 @@ from src.bot import openai_instance
 
 
 async def message_handler(update: Update, context: CallbackContext) -> None:  # type: ignore
+    if openai_instance.handle_timeout():
+        await update.message.reply_text("⚠ Conversation reset due to timeout.")
+
     message: str = update.message.text
     await update.message.chat.send_action(action="typing")
     answer: str = await openai_instance.complete(message)

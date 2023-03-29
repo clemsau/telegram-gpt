@@ -11,14 +11,12 @@ OPENAI_COMPLETION_OPTIONS = {
     "presence_penalty": 0,
 }
 
-DEFAULT_PROMPT = "You are a general assistant."
-
 
 class Chat:
     def __init__(self, openai_api_key: str) -> None:
         openai.api_key = openai_api_key
         self.model = "gpt-3.5-turbo"
-        self.discussions = Discussion(DEFAULT_PROMPT)
+        self.discussions = Discussion()
 
     async def complete(self, message: str) -> str:
         self.discussions.add_message(Author.USER, message)
@@ -32,4 +30,7 @@ class Chat:
         return answer
 
     def reset(self) -> None:
-        self.discussions.reset_discussion(DEFAULT_PROMPT)
+        self.discussions.reset_discussion()
+
+    def handle_timeout(self) -> bool:
+        return self.discussions.handle_timeout()

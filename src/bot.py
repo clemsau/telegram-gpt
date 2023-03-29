@@ -33,7 +33,9 @@ def run_bot() -> None:
         .build()
     )
 
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handlers.message_handler))
+    application.add_handler(
+        MessageHandler(filters.TEXT & ~filters.COMMAND, handlers.message_handler)
+    )
     application.add_handler(CommandHandler("reset", handlers.reset_handler))
 
     application.run_polling()
