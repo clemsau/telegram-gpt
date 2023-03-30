@@ -9,3 +9,4 @@ with open(config_dir / "config.yml", "r") as f:
 
 telegram_token = config["telegram_token"]
 openai_api_key = config["openai_api_key"]
+answer_on_mention = False

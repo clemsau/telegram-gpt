@@ -4,6 +4,8 @@ from enum import Enum
 
 DEFAULT_TIMEOUT = datetime.timedelta(minutes=20)
 DEFAULT_PROMPT = "You are a general assistant."
+ON_MENTION_ACTIVATE = "The bot will now answer only when mentioned with @{}"
+ON_MENTION_DEACTIVATE = "The bot will now answer to every message"
 
 
 class Author(Enum):

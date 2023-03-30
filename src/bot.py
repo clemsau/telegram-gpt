@@ -19,6 +19,7 @@ async def post_init(application: Application) -> None:  # type: ignore
     await application.bot.set_my_commands(
         [
             BotCommand("/reset", "reset the conversation"),
+            BotCommand("/mention", "toggle answer on mention"),
         ]
     )
 
@@ -37,6 +38,7 @@ def run_bot() -> None:
         MessageHandler(filters.TEXT & ~filters.COMMAND, handlers.message_handler)
     )
     application.add_handler(CommandHandler("reset", handlers.reset_handler))
+    application.add_handler(CommandHandler("mention", handlers.mention_handler))
 
     application.run_polling()
 
