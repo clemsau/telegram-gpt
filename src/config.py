@@ -1,13 +1,12 @@
-from pathlib import Path
+import os
 
-import yaml
+from dotenv import load_dotenv
 
-config_dir = Path(__file__).parent.parent / "config"
+load_dotenv()
 
-with open(config_dir / "config.yml", "r") as f:
-    config = yaml.safe_load(f)
-
-telegram_token = config["telegram_token"]
-openai_api_key = config["openai_api_key"]
-allowed_telegram_users = config["allowed_telegram_users"]
+telegram_token = os.getenv("TELEGRAM_TOKEN", "")
+openai_api_key = os.getenv("OPENAI_API_KEY", "")
+allowed_telegram_users = os.getenv("ALLOWED_USERSS", "").split(",")
+if allowed_telegram_users != [""]:
+    allowed_telegram_users = list(map(int, allowed_telegram_users))
 answer_on_mention = False
