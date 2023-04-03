@@ -2,7 +2,7 @@ from telegram import Update, User
 from telegram.ext import CallbackContext
 
 import config
-from src import entity
+from src.entity import ON_MENTION_ACTIVATE, ON_MENTION_DEACTIVATE
 from src.bot import openai_instance
 
 
@@ -31,6 +31,6 @@ async def mention_handler(update: Update, context: CallbackContext) -> None:  # 
     if config.answer_on_mention:
         bot: User = await context.bot.get_me()
         bot_username = bot.username
-        await update.message.reply_text(entity.ON_MENTION_ACTIVATE.format(bot_username))
+        await update.message.reply_text(ON_MENTION_ACTIVATE.format(bot_username))
         return
-    await update.message.reply_text(entity.ON_MENTION_DEACTIVATE)
+    await update.message.reply_text(ON_MENTION_DEACTIVATE)
