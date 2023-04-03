@@ -8,9 +8,9 @@ from telegram.ext import (
     filters,
 )
 
-from handlers import message_handler, reset_handler, mention_handler
-from src.config import allowed_telegram_users, openai_api_key, telegram_token
-from src.openai_utils import Chat
+import handlers
+from config import allowed_telegram_users, openai_api_key, telegram_token
+from openai_utils import Chat
 
 openai_instance: Chat = Chat(openai_api_key)
 
@@ -40,14 +40,14 @@ def run_bot() -> None:
 
     application.add_handler(
         MessageHandler(
-            filters.TEXT & ~filters.COMMAND & user_filter, message_handler
+            filters.TEXT & ~filters.COMMAND & user_filter, handlers.message_handler
         )
     )
     application.add_handler(
-        CommandHandler("reset", reset_handler, filters=user_filter)
+        CommandHandler("reset", handlers.reset_handler, filters=user_filter)
     )
     application.add_handler(
-        CommandHandler("mention", mention_handler, filters=user_filter)
+        CommandHandler("mention", handlers.mention_handler, filters=user_filter)
     )
 
     application.run_polling()

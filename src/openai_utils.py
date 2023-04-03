@@ -1,7 +1,7 @@
 import openai
 
 from entity import Author
-from src.entity import Discussion
+from entity import Discussion
 
 OPENAI_COMPLETION_OPTIONS = {
     "temperature": 0.7,

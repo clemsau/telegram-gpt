@@ -2,8 +2,8 @@ from telegram import Update, User
 from telegram.ext import CallbackContext
 
 import config
-from src.entity import ON_MENTION_ACTIVATE, ON_MENTION_DEACTIVATE
-from src.bot import openai_instance
+from entity import ON_MENTION_ACTIVATE, ON_MENTION_DEACTIVATE
+from bot import openai_instance
 
 
 async def message_handler(update: Update, context: CallbackContext) -> None:  # type: ignore
