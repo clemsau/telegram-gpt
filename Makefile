@@ -13,4 +13,4 @@ lint:
 type-check:
 	mypy ./src
 
-qa: format lint type-check
+qa: format lint

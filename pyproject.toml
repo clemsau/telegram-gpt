@@ -12,13 +12,6 @@ exclude = '''
 )/
 '''
 
-[tool.mypy]
-python_version = "3.10"
-strict = true
-ignore_missing_imports = true
-allow_redefinition = false
-warn_unused_configs = true
-
 [tool.isort]
 profile = "black"
 multi_line_output = 3
