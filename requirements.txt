@@ -1,6 +1,6 @@
 black==23.1.0
 click==8.1.3
-dotenv==1.0.0
+dotenv
 isort==5.12.0
 openai==0.27.2
 packaging==23.0
