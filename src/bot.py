@@ -15,7 +15,7 @@ from openai_utils import Chat
 openai_instance: Chat = Chat(openai_api_key)
 
 
-async def post_init(application: Application) -> None:  # type: ignore
+async def post_init(application: Application) -> None:
     await application.bot.set_my_commands(
         [
             BotCommand("/reset", "reset the conversation"),

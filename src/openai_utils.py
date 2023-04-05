@@ -1,7 +1,6 @@
 import openai
 
-from entity import Author
-from entity import Discussion
+from entity import Author, Discussion
 
 OPENAI_COMPLETION_OPTIONS = {
     "temperature": 0.7,
@@ -20,7 +19,7 @@ class Chat:
 
     async def complete(self, message: str) -> str:
         self.discussions.add_message(Author.USER, message)
-        response = await openai.ChatCompletion.acreate(  # type: ignore
+        response = await openai.ChatCompletion.acreate(
             model=self.model,
             messages=self.discussions.get_messages(),
             **OPENAI_COMPLETION_OPTIONS,
