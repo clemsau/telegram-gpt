@@ -11,3 +11,4 @@ ruff==0.0.259
 mypy-extensions
 tomli==2.0.1
 typing_extensions==4.5.0
+pydub==0.25.1

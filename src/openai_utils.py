@@ -33,3 +33,8 @@ class Chat:
 
     def handle_timeout(self) -> bool:
         return self.discussions.handle_timeout()
+
+    @staticmethod
+    async def transcribe(audio_file) -> str:
+        r = await openai.Audio.atranscribe("whisper-1", audio_file)
+        return r["text"]
