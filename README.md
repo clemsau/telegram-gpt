@@ -16,6 +16,8 @@ Your self-hosted telegram bot for chatting with ChatGPT.
 
 1. Set your environment variables
 
+   ⚠ Note that `ALLOWED_USERS` is for the user IDs and not the usernames. To get your user ID, you can use [@userinfobot](https://t.me/userinfobot) on telegram.
+
    You have multiple options:
 
    1. create a `.env` file in the `/src` folder with the following content:
@@ -65,3 +67,13 @@ Try to be as descriptive as possible when opening an issue.
 ## License
 
 [MIT](LICENSE)
+
+Chatting with ChatGPT through the web interface is sometimes frustrating. Plus, I found myself using it way more since I can just send it a quick text from my phone now, or even a voice message that will be transcribed.
+
+I highly recommend everyone to try it for a few days, it's great for when you have questions on the fly, just open your phone and say what you need to know. The API cost is surprisingly low, I paid approximately 0.50$ in one month of use.
+
+I contributed in another project like this one, but it was meant to be creat bot for many users, and since using your OpenAI cost money, I think a simpler project for personal use is better.
+
+Looking forward for feedbacks, and I will take in consideration any feature request.
+
+GitHub repo
