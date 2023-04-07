@@ -1,14 +1,18 @@
 # telegram-gpt
 
-A self-hosted telegram bot to use the different openai APIs.
+Your self-hosted telegram bot for chatting with ChatGPT.
 
 ## Features
 
 - GPT-3.5 chatbot.
 - Handle voice messages
-- (Option) Response on mentions, for a better integration in group chats.
+- Toggleable answer on mentions, for a better integration in group chats.
 
-## Usage 
+<div style="text-align:center">
+    <img src="assets/demo.gif" alt="Demo gif" height="500">
+</div>
+
+## Installation
 
 1. Set your environment variables
 
@@ -38,7 +42,9 @@ A self-hosted telegram bot to use the different openai APIs.
     pip install -r requirements.txt
     ```
 
-3. Run the bot
+## Usage
+
+Run the bot
 
     ```bash
     python src/bot.py
@@ -47,3 +53,15 @@ A self-hosted telegram bot to use the different openai APIs.
 ## Deployment
 
 You have multiple solutions to deploy this bot. The simplest solution is to run it on a bare metal server. Since this application run on very low resources, you can run it on a raspberry pi or a small vps (e.g: Digital Ocean 4$/month droplet).
+
+
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change
+
+Try to be as descriptive as possible when opening an issue.
+
+## License
+
+[MIT](LICENSE)
