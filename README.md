@@ -50,9 +50,9 @@ Your self-hosted telegram bot for chatting with ChatGPT.
 
 Run the bot
 
-    ```bash
-    python src/bot.py
-    ```
+```bash
+python src/bot.py
+```
 
 ## Deployment
 
