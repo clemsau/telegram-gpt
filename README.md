@@ -8,7 +8,7 @@ Your self-hosted telegram bot for chatting with ChatGPT.
 - Handle voice messages
 - Toggleable answer on mentions, for a better integration in group chats.
 
-<div style="text-align:center">
+<div align="center">
     <img src="assets/demo.gif" alt="Demo gif" height="500">
 </div>
 
@@ -17,6 +17,8 @@ Your self-hosted telegram bot for chatting with ChatGPT.
 1. Set your environment variables
 
    ⚠ Note that `ALLOWED_USERS` is for the user IDs and not the usernames. To get your user ID, you can use [@userinfobot](https://t.me/userinfobot) on telegram.
+   
+   ⚠ If you don't set any `ALLOWED_USERS` or set it to an empty string, everyone will be able to use your bot. Be aware that it might cause unexpected usage of your API key and costs.
 
    You have multiple options:
 
