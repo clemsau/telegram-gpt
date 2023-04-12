@@ -4,6 +4,7 @@ from pathlib import Path
 import pydub
 from telegram import Update, User
 from telegram.constants import ParseMode
+from telegram.error import BadRequest
 from telegram.ext import CallbackContext
 
 import config
@@ -25,8 +26,42 @@ async def message_handler(
         await update.message.reply_text("⚠ Conversation reset due to timeout.")
 
     await update.message.chat.send_action(action="typing")
-    answer: str = await openai_instance.complete(message)
-    await update.message.reply_text(answer)
+    gen = openai_instance.complete(message)
+    prev_answer = ""
+    message_sent = False
+    async for gen_item in gen:
+        status, answer = gen_item
+        if not message_sent:
+            message_sent = True
+            try:
+                sent_message = await update.message.reply_text(answer)
+            except BadRequest as e:
+                if str(e).startswith(
+                    "Message must be non-empty"
+                ):  # first answer chunk from openai was empty
+                    message_sent = False
+                    continue
+                else:
+                    sent_message = await update.message.reply_text(answer)
+            continue
+        if abs(len(answer) - len(prev_answer)) < 10 and status != "done":
+            continue
+
+        try:
+            await context.bot.edit_message_text(
+                answer, chat_id=sent_message.chat_id, message_id=sent_message.message_id
+            )
+        except BadRequest as e:
+            if str(e).startswith("Message is not modified"):
+                continue
+            else:
+                await context.bot.edit_message_text(
+                    answer,
+                    chat_id=sent_message.chat_id,
+                    message_id=sent_message.message_id,
+                )
+
+        prev_answer = answer
 
 
 async def voice_handler(update: Update, context: CallbackContext) -> None:

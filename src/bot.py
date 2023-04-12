@@ -44,9 +44,7 @@ def run_bot() -> None:
         )
     )
     application.add_handler(
-        MessageHandler(
-            filters.VOICE & user_filter, handlers.voice_handler
-        )
+        MessageHandler(filters.VOICE & user_filter, handlers.voice_handler)
     )
     application.add_handler(
         CommandHandler("reset", handlers.reset_handler, filters=user_filter)
