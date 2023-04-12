@@ -6,6 +6,7 @@ Your self-hosted telegram bot for chatting with ChatGPT.
 
 - GPT-3.5 chatbot.
 - Handle voice messages
+- Message streaming
 - Toggleable answer on mentions, for a better integration in group chats.
 
 <div align="center">

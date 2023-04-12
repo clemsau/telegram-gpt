@@ -17,16 +17,22 @@ class Chat:
         self.model = "gpt-3.5-turbo"
         self.discussions = Discussion()
 
-    async def complete(self, message: str) -> str:
+    async def complete(self, message: str):
         self.discussions.add_message(Author.USER, message)
         response = await openai.ChatCompletion.acreate(
             model=self.model,
             messages=self.discussions.get_messages(),
+            stream=True,
             **OPENAI_COMPLETION_OPTIONS,
         )
-        answer: str = response.choices[0].message["content"]
+        answer = ""
+        async for response_part in response:
+            delta = response_part.choices[0].delta
+            if "content" in delta:
+                answer += delta.content
+                yield "waiting", answer
         self.discussions.add_message(Author.ASSISTANT, answer)
-        return answer
+        yield "done", answer
 
     def reset(self) -> None:
         self.discussions.reset_discussion()
