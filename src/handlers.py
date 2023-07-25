@@ -9,7 +9,7 @@ from telegram.ext import CallbackContext
 
 import config
 from bot import openai_instance
-from entity import ON_MENTION_ACTIVATE, ON_MENTION_DEACTIVATE
+from entity import ON_MENTION_ACTIVATE, ON_MENTION_DEACTIVATE, SWITCH_MODEL
 
 
 async def message_handler(
@@ -106,3 +106,8 @@ async def mention_handler(update: Update, context: CallbackContext) -> None:
         await update.message.reply_text(ON_MENTION_ACTIVATE.format(bot_username))
         return
     await update.message.reply_text(ON_MENTION_DEACTIVATE)
+
+
+async def model_handler(update: Update, context: CallbackContext) -> None:
+    openai_instance.switch_model()
+    await update.message.reply_text(SWITCH_MODEL.format(openai_instance.model))

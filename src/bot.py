@@ -52,6 +52,9 @@ def run_bot() -> None:
     application.add_handler(
         CommandHandler("mention", handlers.mention_handler, filters=user_filter)
     )
+    application.add_handler(
+        CommandHandler("model", handlers.model_handler, filters=user_filter)
+    )
 
     application.run_polling()
 
